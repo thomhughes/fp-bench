@@ -17,7 +17,8 @@ extern "C" {
 #endif
 
 #ifndef SVCB_GCOV_FLUSH_DECL
-extern void __gcov_flush();
+extern void __gcov_dump();
+extern void __gcov_reset();
 #define SVCB_GCOV_FLUSH_DECL
 #endif
 
@@ -29,7 +30,8 @@ extern void __gcov_flush();
 #define assert(expr)                                          \
 	do {                                                        \
 		if(!(expr)) {                                             \
-			__gcov_flush();                                         \
+			__gcov_dump();                                       \
+			__gcov_reset();                                       \
 			__assert_fail(#expr, __FILE__, __LINE__, __func__);     \
 		}                                                         \
 	} while(0)

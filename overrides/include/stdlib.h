@@ -12,7 +12,8 @@ extern "C" {
 #endif
 
 #ifndef SVCB_GCOV_FLUSH_DECL
-extern void __gcov_flush();
+extern void __gcov_dump();
+extern void __gcov_reset();
 #define SVCB_GCOV_FLUSH_DECL
 #endif
 
@@ -23,4 +24,4 @@ extern void __gcov_flush();
 // Wrapper macro that makes sure __gcov_flush() is called
 // first.
 #undef abort
-#define abort() do {__gcov_flush(); abort();} while(0)
+#define abort() do {__gcov_dump(); __gcov_reset(); abort();} while(0)
