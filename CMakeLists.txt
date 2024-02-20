@@ -202,7 +202,7 @@ if (BUILD_WITH_PROFILING)
     if (HAS_${sanitized_name}_C)
       set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${f}")
     else()
-      message(FATAL_ERROR "C Compiler is required to support flag \"${f}\"")
+      message(FATAL_ERROR "C Compiler ${sanitized_name} is required to support flag \"${f}\"")
     endif()
     # HACK: The linker needs to know about the flag too
     # so pretend it's a library so it gets put in the link line.
@@ -254,7 +254,7 @@ list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/modules")
 # them to speed up configure.
 #find_package(Threads)
 #find_package(OpenMP)
-find_package(KLEENativeRuntime)
+find_package(KLEE_NATIVE_RUNTIME)
 
 option(KLEE_NATIVE_RUNTIME_REQUIRED "Require the KLEE native runtime" ON)
 if (KLEE_NATIVE_RUNTIME_REQUIRED)
